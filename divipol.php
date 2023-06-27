@@ -65,6 +65,7 @@
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
+                <th>CÓDIGO DIVIPOL</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
@@ -88,6 +89,7 @@
                 <td><?php echo $mostrar['mm']?></td>
                 <td><?php echo $mostrar['zz']?></td>
                 <td><?php echo $mostrar['pp']?></td>
+                <td><?php echo $mostrar['c_divipol']?></td>
                 <td><?php echo $mostrar['departamento']?></td>
                 <td><?php echo $mostrar['municipio']?></td>
                 <td><?php echo $mostrar['puesto']?></td>
@@ -107,6 +109,7 @@
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
+                <th>CÓDIGO DIVIPOL</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>

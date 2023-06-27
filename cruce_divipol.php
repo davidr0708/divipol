@@ -25,13 +25,13 @@
             </button>
         <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
             <ul class="navbar-nav w-100 justify-content-center">
-                <li class="nav-item active">
+                <li class="nav-item ">
                     <a class="nav-link" href="divipol.php">Divipol</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="asignacion.php">Asignación CAD & PD</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="cruce_divipol.php">Cruce Divipol</a>
                 </li>
 
@@ -65,15 +65,15 @@
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
+                <th>CÓDIGO DIVIPOL</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
-                <th>MUJERES</th>
-                <th>HOMBRES</th>
-                <th>TOTAL</th>
                 <th>MESAS</th>
                 <th>COMUNA</th>
-                <th>DIRECCIÓN</th>
+                <th>CRUCE DIVIPOL</th>
+                <th>TIPO CAD</th>
+                <th>NOMBRE CAD</th>
             </tr>
         </thead>
 
@@ -88,34 +88,34 @@
                 <td><?php echo $mostrar['mm']?></td>
                 <td><?php echo $mostrar['zz']?></td>
                 <td><?php echo $mostrar['pp']?></td>
+                <td><?php echo $mostrar['c_divipol']?></td>
                 <td><?php echo $mostrar['departamento']?></td>
                 <td><?php echo $mostrar['municipio']?></td>
                 <td><?php echo $mostrar['puesto']?></td>
-                <td><?php echo $mostrar['mujeres']?></td>
-                <td><?php echo $mostrar['hombres']?></td>
-                <td><?php echo $mostrar['total']?></td>
                 <td><?php echo $mostrar['mesas']?></td>
                 <td><?php echo $mostrar['comuna']?></td>
-                <td><?php echo $mostrar['direccion']?></td>
+                <td><?php echo $mostrar['cruce_divipol']?></td>
+                <td><?php echo $mostrar['tipo_cad']?></td>
+                <td><?php echo $mostrar['nombre_cad']?></td>
             </tr>
             <?php
         }
         ?>
         <tfoot>
             <tr style="font-size: 12px;">
-                <th>DD</th>
+            <th>DD</th>
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
+                <th>CÓDIGO DIVIPOL</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
-                <th>MUJERES</th>
-                <th>HOMBRES</th>
-                <th>TOTAL</th>
                 <th>MESAS</th>
                 <th>COMUNA</th>
-                <th>DIRECCIÓN</th>
+                <th>CRUCE DIVIPOL</th>
+                <th>TIPO CAD</th>
+                <th>NOMBRE CAD</th>
             </tr>
         </tfoot>
         

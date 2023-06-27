@@ -84,7 +84,7 @@
         </thead>
 
         <?php
-        $sql="SELECT * from cruce_divipol";
+        $sql="SELECT * from asignaciones";
         $result=mysqli_query($conexion,$sql);
 
         while($mostrar=mysqli_fetch_array($result)){
@@ -94,10 +94,10 @@
                 <td><?php echo $mostrar['mm']?></td>
                 <td><?php echo $mostrar['zz']?></td>
                 <td><?php echo $mostrar['pp']?></td>
-                <td><?php echo $mostrar['divipol']?></td>
+                <td><?php echo $mostrar['c_divipol']?></td>
                 <td><?php echo $mostrar['c_anexos']?></td>
                 <td><?php echo $mostrar['nro']?></td>
-                <td><?php echo $mostrar['c_pd_cad']?></td>
+                <td><?php echo $mostrar['codigo_pd_cad']?></td>
                 <td><?php echo $mostrar['departamento']?></td>
                 <td><?php echo $mostrar['municipio']?></td>
                 <td><?php echo $mostrar['puesto']?></td>
@@ -107,8 +107,8 @@
                 <td><?php echo $mostrar['mesas']?></td>
                 <td><?php echo $mostrar['comuna']?></td>
                 <td><?php echo $mostrar['direccion']?></td>
-                <td><?php echo $mostrar['tipo_acopio']?></td>
-                <td><?php echo $mostrar['clase_pd']?></td>
+                <td><?php echo $mostrar['tipo_cad']?></td>
+                <td><?php echo $mostrar['clase']?></td>
                 <td><?php echo $mostrar['nombre_cad']?></td>
                 
             </tr>
