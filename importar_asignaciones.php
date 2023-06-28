@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<title>Asignaciones CAD & PD</title>
+    	<title>Importar | Divipol</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <!-- DataTable-->
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
@@ -29,10 +29,10 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="divipol.php">Divipol</a>
                 </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="asignacion.php">Asignación CAD & PD</a>
+                <li class="nav-item ">
+                    <a class="nav-link" href="asignaciones.php">Asignación CAD & PD</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item ">
                     <a class="nav-link" href="cruce_divipol.php">Cruce Divipol</a>
                 </li>
             </ul>
@@ -42,8 +42,8 @@
                     Importar
                     </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="importar_divipol.php">Divipol</a>
-                            <a class="dropdown-item" href="importar_asignacion.php">Asignacion CAD & PD</a>
+                            <a class="dropdown-item " href="importar_divipol.php">Divipol</a>
+                            <a class="dropdown-item active" href="importar_asignaciones.php">Asignacion CAD & PD</a>
                         </div>
                 </div>
                 <li class="nav-item">
@@ -54,95 +54,62 @@
         </div>
     </div>
 </nav>
-<div class="container my-5">
-        <div class="row">
-            
-    <table id="example" class="table table-striped" style="width:100%">
-        <thead>
-            <tr style="font-size: 12px;">
-                <th>DPTO</th>
-                <th>MM</th>
-                <th>ZZ</th>
-                <th>PP</th>
-                <th>DIVIPOL</th>
-                <th>CÓDIGO DE ANEXOS</th>
-                <th>N°</th>
-                <th>CÓDIGO PD/CAD</th>
-                <th>DEPARTAMENTO</th>
-                <th>MUNICIPIO</th>
-                <th>PUESTO</th>
-                <th>MUJERES</th>
-                <th>HOMBRES</th>
-                <th>TOTAL</th>
-                <th>MESAS</th>
-                <th>COMUNA</th>
-                <th>DIRECCIÓN</th>
-                <th>TIPO DE ACOPIO</th>
-                <th>CLASE DE PD</th>
-                <th>NOMBRE DEL CAD PRINCIPAL</th>
-            </tr>
-        </thead>
 
-        <?php
-        $sql="SELECT * from asignaciones";
-        $result=mysqli_query($conexion,$sql);
+<h1 style="margin-top:50px;">Importar <br>Asignaciones</h1><br><br>
 
-        while($mostrar=mysqli_fetch_array($result)){
-            ?>
-            <tr style="font-size: 12px;">
-                <td><?php echo $mostrar['c_dpto']?></td>
-                <td><?php echo $mostrar['mm']?></td>
-                <td><?php echo $mostrar['zz']?></td>
-                <td><?php echo $mostrar['pp']?></td>
-                <td><?php echo $mostrar['c_divipol']?></td>
-                <td><?php echo $mostrar['c_anexos']?></td>
-                <td><?php echo $mostrar['nro']?></td>
-                <td><?php echo $mostrar['codigo_pd_cad']?></td>
-                <td><?php echo $mostrar['departamento']?></td>
-                <td><?php echo $mostrar['municipio']?></td>
-                <td><?php echo $mostrar['puesto']?></td>
-                <td><?php echo $mostrar['mujeres']?></td>
-                <td><?php echo $mostrar['hombres']?></td>
-                <td><?php echo $mostrar['total']?></td>
-                <td><?php echo $mostrar['mesas']?></td>
-                <td><?php echo $mostrar['comuna']?></td>
-                <td><?php echo $mostrar['direccion']?></td>
-                <td><?php echo $mostrar['tipo_cad']?></td>
-                <td><?php echo $mostrar['clase']?></td>
-                <td><?php echo $mostrar['nombre_cad']?></td>
-                
-            </tr>
-            <?php
-        }
-        ?>
-        <tfoot>
-            <tr style="font-size: 12px;">
-                <th>DPTO</th>
-                <th>MM</th>
-                <th>ZZ</th>
-                <th>PP</th>
-                <th>DIVIPOL</th>
-                <th>CÓDIGO DE ANEXOS</th>
-                <th>N°</th>
-                <th>CÓDIGO PD/CAD</th>
-                <th>DEPARTAMENTO</th>
-                <th>MUNICIPIO</th>
-                <th>PUESTO</th>
-                <th>MUJERES</th>
-                <th>HOMBRES</th>
-                <th>TOTAL</th>
-                <th>MESAS</th>
-                <th>COMUNA</th>
-                <th>DIRECCIÓN</th>
-                <th>TIPO DE ACOPIO</th>
-                <th>CLASE DE PD</th>
-                <th>NOMBRE DEL CAD PRINCIPAL</th>
-            </tr>
-        </tfoot>
-    </table>
-    </div>
-    </div>
+<form action="procesar_asignaciones.php" method="POST" enctype="multipart/form-data">
+  <input type="file" name="archivo" accept=".xlsx, .xls">
+  <button type="submit">Cargar archivo</button>
+</form>
+</div>
 
+
+
+<style>
+body {
+  font-family: "Open sans", "Segoe UI", "Segoe WP", Helvetica, Arial, sans-serif;
+  color: #7F8C9A;
+  background: #FCFDFD;
+}
+h1, h2 {
+  margin-bottom: 5px;
+  font-weight: normal;
+  text-align: center;
+  color:#aaa;
+}
+h2 {
+  margin: 5px 0 2em;
+  color: #1ABC9C;
+}
+form {
+  width: 225px;
+  margin: 0 auto;
+  text-align:center;
+}
+h2 + P {
+  text-align: center;
+}
+.txtcenter {
+  margin-top: 4em;
+  font-size: .9em;
+  text-align: center;
+  color: #aaa;
+}
+.copy {
+  margin-top: 2em;
+}
+.copy a {
+  text-decoration: none;
+  color: #1ABC9C;
+}
+.principal{
+    background-color:#ededed;
+    margin-top: 10px;
+    margin-left: 28%;
+    width: 40%;
+    border-radius: 20px
+}
+</style>
 
     <!--Jquery-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>

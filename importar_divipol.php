@@ -30,7 +30,7 @@
                     <a class="nav-link" href="divipol.php">Divipol</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="asignacion.php">Asignación CAD & PD</a>
+                    <a class="nav-link" href="asignaciones.php">Asignación CAD & PD</a>
                 </li>
                 <li class="nav-item ">
                     <a class="nav-link" href="cruce_divipol.php">Cruce Divipol</a>
@@ -43,7 +43,7 @@
                     </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item active" href="importar_divipol.php">Divipol</a>
-                            <a class="dropdown-item " href="importar_asignacion.php">Asignacion CAD & PD</a>
+                            <a class="dropdown-item " href="importar_asignaciones.php">Asignacion CAD & PD</a>
                         </div>
                 </div>
                 <li class="nav-item">

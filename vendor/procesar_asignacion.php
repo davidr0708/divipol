@@ -35,7 +35,7 @@ if (isset($_FILES["archivo"]) && $_FILES["archivo"]["error"] == 0) {
     }
 
     // Insertar los datos en la tabla de la base de datos
-    $sql = "INSERT INTO asignaciones (c_dpto, mm, zz, pp, c_divipol, c_anexos, nro, codigo_pd_cad, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion, tipo_cad, clase, nombre_cad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $sql = "INSERT INTO asignaciones(c_dpto, mm, zz, pp, c_divipol, c_anexos, nro, codigo_pd_cad, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion, tipo_cad, clase, nombre_cad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("iiiiiiissssiiiisssss", $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $data[7],$data[8],$data[9],$data[10],$data[11],$data[12],$data[13],$data[14],$data[15],$data[16],$data[17],$data[18],$data[19]);
     $stmt->execute();

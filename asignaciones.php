@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    	<title>Divipol</title>
+    	<title>Asignaciones CAD & PD</title>
         <link rel="stylesheet" type="text/css" href="css/style.css">
         <!-- DataTable-->
         <link href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
@@ -12,6 +12,7 @@
         <link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
         <!--Font Awesome-->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        
     </head>
     <body>
 	<?php
@@ -28,13 +29,12 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="divipol.php">Divipol</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="asignaciones.php">Asignación CAD & PD</a>
                 </li>
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="cruce_divipol.php">Cruce Divipol</a>
                 </li>
-
             </ul>
             <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
             <div class="dropdown">
@@ -54,74 +54,95 @@
         </div>
     </div>
 </nav>
-
-<div class="container my-4">
-        <div class="row">            
-    <table id="example" class="table table-striped">
+<div class="container my-5">
+        <div class="row">
+            
+    <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr style="font-size: 12px;">
-                <th>DD</th>
+                <th>DPTO</th>
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
-                <th>CÓDIGO DIVIPOL</th>
+                <th>DIVIPOL</th>
+                <th>CÓDIGO DE ANEXOS</th>
+                <th>N°</th>
+                <th>CÓDIGO PD/CAD</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
+                <th>MUJERES</th>
+                <th>HOMBRES</th>
+                <th>TOTAL</th>
                 <th>MESAS</th>
                 <th>COMUNA</th>
-                <th>CRUCE DIVIPOL</th>
-                <th>TIPO CAD</th>
-                <th>NOMBRE CAD</th>
+                <th>DIRECCIÓN</th>
+                <th>TIPO DE ACOPIO</th>
+                <th>CLASE DE PD</th>
+                <th>NOMBRE DEL CAD PRINCIPAL</th>
             </tr>
-        </thead>  
+        </thead>
 
         <?php
- 
-        $sql="SELECT * from divipol";
+        $sql="SELECT * from asignaciones";
         $result=mysqli_query($conexion,$sql);
 
-        while($query1=mysqli_fetch_array($result)){
+        while($mostrar=mysqli_fetch_array($result)){
             ?>
             <tr style="font-size: 12px;">
-                <td><?php echo $query1 ['dd']?></td>
-                <td><?php echo $query1['mm']?></td>
-                <td><?php echo $query1['zz']?></td>
-                <td><?php echo $query1['pp']?></td>
-                <td><?php echo $query1['dd']?></td>
-                <td><?php echo $query1['departamento']?></td>
-                <td><?php echo $query1['municipio']?></td>
-                <td><?php echo $query1['puesto']?></td>
-                <td><?php echo $query1['mesas']?></td>
-                <td><?php echo $query1['comuna']?></td>
-                <td><?php echo $mostrar['cruce_divipol']?></td>
+                <td><?php echo $mostrar['c_dpto']?></td>
+                <td><?php echo $mostrar['mm']?></td>
+                <td><?php echo $mostrar['zz']?></td>
+                <td><?php echo $mostrar['pp']?></td>
+                <td><?php echo $mostrar['c_divipol']?></td>
+                <td><?php echo $mostrar['c_anexos']?></td>
+                <td><?php echo $mostrar['nro']?></td>
+                <td><?php echo $mostrar['codigo_pd_cad']?></td>
+                <td><?php echo $mostrar['departamento']?></td>
+                <td><?php echo $mostrar['municipio']?></td>
+                <td><?php echo $mostrar['puesto']?></td>
+                <td><?php echo $mostrar['mujeres']?></td>
+                <td><?php echo $mostrar['hombres']?></td>
+                <td><?php echo $mostrar['total']?></td>
+                <td><?php echo $mostrar['mesas']?></td>
+                <td><?php echo $mostrar['comuna']?></td>
+                <td><?php echo $mostrar['direccion']?></td>
                 <td><?php echo $mostrar['tipo_cad']?></td>
+                <td><?php echo $mostrar['clase']?></td>
                 <td><?php echo $mostrar['nombre_cad']?></td>
+                
             </tr>
             <?php
         }
         ?>
         <tfoot>
             <tr style="font-size: 12px;">
-            <th>DD</th>
+                <th>DPTO</th>
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
-                <th>CÓDIGO DIVIPOL</th>
+                <th>DIVIPOL</th>
+                <th>CÓDIGO DE ANEXOS</th>
+                <th>N°</th>
+                <th>CÓDIGO PD/CAD</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
+                <th>MUJERES</th>
+                <th>HOMBRES</th>
+                <th>TOTAL</th>
                 <th>MESAS</th>
                 <th>COMUNA</th>
-                <th>CRUCE DIVIPOL</th>
-                <th>TIPO CAD</th>
-                <th>NOMBRE CAD</th>
+                <th>DIRECCIÓN</th>
+                <th>TIPO DE ACOPIO</th>
+                <th>CLASE DE PD</th>
+                <th>NOMBRE DEL CAD PRINCIPAL</th>
             </tr>
         </tfoot>
-        
     </table>
     </div>
     </div>
+
 
     <!--Jquery-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
