@@ -9,43 +9,50 @@ $username = "root";
 $password = "";
 $dbname = "divipol";
 
-// Conectarse a la base de datos
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-  die("Error de conexión a la base de datos: " . $conn->connect_error);
-}
 use \PhpOffice\PhpSpreadsheet\IOFactory;
-// Verificar si se envió un archivo
-if (isset($_FILES["archivo"]) && $_FILES["archivo"]["error"] == 0) {
-  $archivo = $_FILES["archivo"]["tmp_name"];
 
-  // Cargar el archivo Excel utilizando la biblioteca PhpSpreadsheet
-  require 'vendor/autoload.php'; // Asegúrate de haber instalado la biblioteca PhpSpreadsheet mediante Composer
-
-  $reader = IOFactory::createReaderForFile($archivo);
-  $spreadsheet = $reader->load($archivo);
-  $sheet = $spreadsheet->getActiveSheet();
-  
-  // Iterar sobre las filas del archivo Excel y guardar los datos en la base de datos
-  foreach ($sheet->getRowIterator() as $row) {
-    // Leer los valores de cada celda en la fila
-    $data = [];
-    foreach ($row->getCellIterator() as $cell) {
-      $data[] = $cell->getValue();
-    }
-
-    // Insertar los datos en la tabla de la base de datos
-    $sql = "INSERT INTO divipol (dd, mm, zz, pp, c_divipol, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iiiiisssiiiiss", $data[0], $data[1], $data[2], $data[3], $data[4], $data[5], $data[6], $data[7],$data[8],$data[9],$data[10],$data[11],$data[12], $data[13]);
-    $stmt->execute();
+try {
+  // Conectarse a la base de datos
+  $conn = new mysqli($servername, $username, $password, $dbname);
+  if ($conn->connect_error) {
+    die("Error de conexión a la base de datos: " . $conn->connect_error);
   }
 
-  echo "Archivo cargado y datos guardados en la base de datos.";
+  // Verificar si se envió un archivo
+  if (isset($_FILES["archivo"]) && $_FILES["archivo"]["error"] == 0) {
+    $archivo = $_FILES["archivo"]["tmp_name"];
 
-} else {
-  echo "Error al cargar el archivo.";
+    // Cargar el archivo Excel utilizando la biblioteca PhpSpreadsheet
+    require 'vendor/autoload.php'; // Asegúrate de haber instalado la biblioteca PhpSpreadsheet mediante Composer
+
+    $reader = IOFactory::createReaderForFile($archivo);
+    $spreadsheet = $reader->load($archivo);
+    $sheet = $spreadsheet->getActiveSheet();
+    $count = 0;
+
+    // Iterar sobre las filas del archivo Excel y guardar los datos en la base de datos
+    foreach ($sheet->getRowIterator() as $row) {
+      if ($count > 0) {
+        // Leer los valores de cada celda en la fila
+        $data = [];
+        foreach ($row->getCellIterator() as $cell) {
+          $data[] = $cell->getValue();
+        }
+        // Insertar los datos en la tabla de la base de datos
+        $sql = "INSERT INTO divipol (dd, mm, zz, pp, c_divipol, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($sql);
+        $divipolNumber = "{$data[0]}{$data[1]}{$data[2]}{$data[3]}";
+        $stmt->bind_param("ssssssssiiiiss", $data[0], $data[1], $data[2], $data[3], $divipolNumber, $data[4], $data[5], $data[6], $data[7], $data[8], $data[9], $data[10], $data[11], $data[12]);
+        $stmt->execute();
+      }
+      $count++;
+    }
+    echo "Archivo cargado y datos guardados en la base de datos.";
+  } else {
+    echo "Error al cargar el archivo.";
+  }
+
+  $conn->close();
+} catch (Exception $e) {
+  echo 'Excepción capturada: ',  $e->getMessage(), "\n";
 }
-
-$conn->close();
-?>

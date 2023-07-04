@@ -32,12 +32,7 @@
                 <li class="nav-item ">
                     <a class="nav-link" href="asignaciones.php">Asignación CAD & PD</a>
                 </li>
-                <li class="nav-item ">
-                    <a class="nav-link" href="cruce_divipol.php">Cruce Divipol</a>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
-            <div class="dropdown">
+                <div class="dropdown">
                     <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Importar
                     </button>
@@ -46,6 +41,9 @@
                             <a class="dropdown-item " href="importar_asignaciones.php">Asignacion CAD & PD</a>
                         </div>
                 </div>
+            </ul>
+            <ul class="nav navbar-nav ms-auto w-100 justify-content-end">
+
                 <li class="nav-item">
                     <a class="nav-link" href="modelo/logout.php">Salir</a>
                 </li>
