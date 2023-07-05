@@ -29,6 +29,8 @@ try {
     $spreadsheet = $reader->load($archivo);
     $sheet = $spreadsheet->getActiveSheet();
     $count = 0;
+    $sumMesas = 0;
+    $sumPuestos = 0;
 
     // Iterar sobre las filas del archivo Excel y guardar los datos en la base de datos
     foreach ($sheet->getRowIterator() as $row) {
@@ -38,16 +40,26 @@ try {
         foreach ($row->getCellIterator() as $cell) {
           $data[] = $cell->getValue();
         }
-        // Insertar los datos en la tabla de la base de datos
-        $sql = "INSERT INTO divipol (dd, mm, zz, pp, c_divipol, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $stmt = $conn->prepare($sql);
-        $divipolNumber = "{$data[0]}{$data[1]}{$data[2]}{$data[3]}";
-        $stmt->bind_param("ssssssssiiiiss", $data[0], $data[1], $data[2], $data[3], $divipolNumber, $data[4], $data[5], $data[6], $data[7], $data[8], $data[9], $data[10], $data[11], $data[12]);
-        $stmt->execute();
+
+        if (intval($data[10]) > 0) {
+          //Suma las mesas
+          $sumMesas = intval($data[10]) + $sumMesas;
+          //Suma los puestos si no vienen vacios
+          if ($data[6] != null && $data[6] != "") {
+            $sumPuestos++;
+          }
+
+          // Insertar los datos en la tabla de la base de datos
+          $sql = "INSERT INTO divipol (dd, mm, zz, pp, c_divipol, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+          $stmt = $conn->prepare($sql);
+          $divipolNumber = "{$data[0]}{$data[1]}{$data[2]}{$data[3]}";
+          $stmt->bind_param("ssssssssiiiiss", $data[0], $data[1], $data[2], $data[3], $divipolNumber, $data[4], $data[5], $data[6], $data[7], $data[8], $data[9], $data[10], $data[11], $data[12]);
+          $stmt->execute();
+        }
       }
       $count++;
     }
-    echo "Archivo cargado y datos guardados en la base de datos.";
+    echo "Archivo cargado y datos guardados en la base de datos. Hay {$sumMesas} Mesas y {$sumPuestos} puestos.";
   } else {
     echo "Error al cargar el archivo.";
   }

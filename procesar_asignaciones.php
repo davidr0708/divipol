@@ -39,20 +39,21 @@ try {
         }
 
         // Insertar los datos en la tabla de la base de datos
-        $sql = "INSERT INTO asignaciones (c_dpto, mm, zz, pp, c_divipol, c_anexos, nro, codigo_pd_cad, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion, tipo_cad, clase, nombre_cad) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $sql = "INSERT INTO asignaciones (dd, mm, zz, pp, c_divipol, acopio_padre, c_anexos, tipo_acopio, codigo_pd_cad, nombre_pd_cad, departamento, municipio, puesto, mujeres, hombres, total, mesas, comuna, direccion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($sql);
-        $divipolNumber = $data[4];
-        $stmt->bind_param("sssssssssssiiiisssss", $data[0], $data[1], $data[2], $data[3], $divipolNumber, $data[5], $data[6], $data[7], $data[8], $data[9], $data[10], $data[11], $data[12], $data[13], $data[14], $data[15], $data[16], $data[17], $data[18], $data[19]);
+        $stmt->bind_param("sssssssssssssiiiiss", $data[0], $data[1], $data[2], $data[3], $data[4], $data[7], $data[8], $data[11], $data[12], $data[13], $data[15], $data[16], $data[17], $data[18], $data[19], $data[20], $data[21], $data[23], $data[24]);
         $stmt->execute();
 
 
-        $queryDivipol = "UPDATE `divipol` SET `tipo_cad`=?, `nombre_cad`=?, `estado`=? WHERE `c_divipol` = ?";
+        $queryDivipol = "UPDATE `divipol` SET `tipo_acopio`=?, `acopio_padre`=?, `nombre_pd_cad`=?, `estado`=?, `c_anexos`=? WHERE `c_divipol` = ?";
         $stmt2 = $conn->prepare($queryDivipol);
-        $tipo_cad = $data[17];
-        $nombre_cad = $data[19];
+        $c_divipol = $data[4];
+        $acopio_padre = $data[7];
+        $c_anexos = $data[8];
+        $tipo_acopio = $data[11];
+        $nombre_pd_cad = $data[13];
         $estado = 2;
-        $c_divipol = $divipolNumber;
-        $stmt2->bind_param("ssis", $tipo_cad, $nombre_cad, $estado, $c_divipol);
+        $stmt2->bind_param("sssiss", $acopio_padre, $tipo_acopio, $nombre_pd_cad, $estado, $c_anexos, $c_divipol);
         $stmt2->execute();
       }
 

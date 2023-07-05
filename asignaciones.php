@@ -51,20 +51,36 @@
         </div>
     </div>
 </nav>
+
+
+<div class="container my-4">
+        <div class="row">
+            <div class="col-md-3" style="margin-left:90%">
+                <form action="borrar-asignaciones.php" method="POST">
+                    <input type="hidden" name="Delete_Asignaciones" id="delete" value="Borrar">
+                    <button type="submit" class="btn btn-danger" style="cursor: pointer;">Borrar Base de Datos</button>
+                </form>
+            </div>
+            <div class="col-md-10">
+            </div>
+        </div>
+
 <div class="container my-4">
         <div class="row" style="margin-left:-110px">
             
     <table id="example" class="table table-striped" style="width:100%">
         <thead>
             <tr style="font-size: 12px;">
-                <th>DPTO</th>
+                <th>DD</th>
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
-                <th>DIVIPOL</th>
+                <th>CÓDIGO DIVIPOL</th>
+                <th>ACOPIO/PADRE</th>
                 <th>CÓDIGO DE ANEXOS</th>
-                <th>N°</th>
+                <th>CENTRO DE ACOPIO</th>
                 <th>CÓDIGO PD/CAD</th>
+                <th>NOMBRE DEL CAD/PD PRINCIPAL</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
@@ -74,9 +90,6 @@
                 <th>MESAS</th>
                 <th>COMUNA</th>
                 <th>DIRECCIÓN</th>
-                <th>TIPO DE ACOPIO</th>
-                <th>CLASE DE PD</th>
-                <th>NOMBRE DEL CAD PRINCIPAL</th>
             </tr>
         </thead>
 
@@ -87,14 +100,16 @@
         while($mostrar=mysqli_fetch_array($result)){
             ?>
             <tr style="font-size: 12px;">
-                <td><?php echo $mostrar['c_dpto']?></td>
+                <td><?php echo $mostrar['dd']?></td>
                 <td><?php echo $mostrar['mm']?></td>
                 <td><?php echo $mostrar['zz']?></td>
                 <td><?php echo $mostrar['pp']?></td>
                 <td><?php echo $mostrar['c_divipol']?></td>
+                <td><?php echo $mostrar['acopio_padre']?></td>
                 <td><?php echo $mostrar['c_anexos']?></td>
-                <td><?php echo $mostrar['nro']?></td>
+                <td><?php echo $mostrar['tipo_acopio']?></td>
                 <td><?php echo $mostrar['codigo_pd_cad']?></td>
+                <td><?php echo $mostrar['nombre_pd_cad']?></td>
                 <td><?php echo $mostrar['departamento']?></td>
                 <td><?php echo $mostrar['municipio']?></td>
                 <td><?php echo $mostrar['puesto']?></td>
@@ -104,23 +119,22 @@
                 <td><?php echo $mostrar['mesas']?></td>
                 <td><?php echo $mostrar['comuna']?></td>
                 <td><?php echo $mostrar['direccion']?></td>
-                <td><?php echo $mostrar['tipo_cad']?></td>
-                <td><?php echo $mostrar['clase']?></td>
-                <td><?php echo $mostrar['nombre_cad']?></td>
             </tr>
             <?php
         }
         ?>
         <tfoot>
             <tr style="font-size: 12px;">
-                <th>DPTO</th>
+                <th>DD</th>
                 <th>MM</th>
                 <th>ZZ</th>
                 <th>PP</th>
-                <th>DIVIPOL</th>
+                <th>CÓDIGO DIVIPOL</th>
+                <th>ACOPIO/PADRE</th>
                 <th>CÓDIGO DE ANEXOS</th>
-                <th>N°</th>
+                <th>CENTRO DE ACOPIO</th>
                 <th>CÓDIGO PD/CAD</th>
+                <th>NOMBRE DEL CAD/PD PRINCIPAL</th>
                 <th>DEPARTAMENTO</th>
                 <th>MUNICIPIO</th>
                 <th>PUESTO</th>
@@ -130,9 +144,6 @@
                 <th>MESAS</th>
                 <th>COMUNA</th>
                 <th>DIRECCIÓN</th>
-                <th>TIPO DE ACOPIO</th>
-                <th>CLASE DE PD</th>
-                <th>NOMBRE DEL CAD PRINCIPAL</th>
             </tr>
         </tfoot>
     </table>
